@@ -55,7 +55,7 @@ byday <- data %>%
 ```
 
 ```r
-hist(byday$sum)
+hist(byday$sum, main = "Histogram of total daily steps", xlab = "Total daily steps")
 ```
 
 ![](PA1_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
@@ -77,7 +77,7 @@ mean(byday$sum)
 ```
 
 ## What is the average daily activity pattern?
-The average daily pattern shows very low steps between 0 and the 500th interval then a rise to around 50 steps per interval with a peak at the 835 interval. After this peak, steps hover between 50 and 100 sets per interval until 
+The average daily pattern shows very low steps between 0 and the 500th interval then a rise to around 50 steps per interval with a maximum of 206 steps at the 835th interval. After this peak, steps hover between 50 and 100 sets per interval until they decline around 1900. 
 
 ```r
 averageday <- data %>%
@@ -109,7 +109,7 @@ maxinterval
 ```
 
 ## Imputing missing values
-Here we will impute the missing values using the average steps for each interval.
+Here I impute the missing values using the average steps for each interval.
 
 
 ```r
@@ -137,7 +137,7 @@ Here we will impute the missing values using the average steps for each interval
     data3 <- select(data,impute,date,interval)
     data3<-rename(data3, steps = impute)
 ```
-##Redo of histogram using data without NAs
+##Redo of daily steps histogram using imputed data
 
 ```r
  byday2 <- data3 %>%
@@ -150,7 +150,7 @@ Here we will impute the missing values using the average steps for each interval
 ```
 
 ```r
-  hist(byday2$sum)
+  hist(byday2$sum, main = "Histogram of total daily steps (imputed)", xlab = "Total Daily Steps")
 ```
 
 ![](PA1_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
@@ -187,7 +187,7 @@ mean(data3$sum)
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-### Weekends do show different activity patterns compared to week days. The peak is still around the same interval 800 - 900, but it ramps up a little more slowly and activity remains higher thoughtout the day. 
+Weekends do show different activity patterns compared to week days. The peak is still around the same interval 800 - 900, but it ramps up a little more slowly and activity remains higher thoughtout the day. 
 
 ```r
 library(ggplot2)
